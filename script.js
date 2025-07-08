@@ -35,7 +35,7 @@ if(!sessionStorage.getItem("products")){
 	return
 }
 	let x = JSON.parse(sessionStorage.getItem("products"))
-	console.log(x)
+	
 	for(let t of x){
 	let li = document.createElement("li");
 		let btns = document.createElement("button")
@@ -51,22 +51,21 @@ if(!sessionStorage.getItem("products")){
 // Add item to cart
 
 function addToCart(productId) {
-let newarr = []
-
-if(sessionStorage.getItem("products")){
-	let x = JSON.parse(sessionStorage.getItem("products"))
-	newarr= [...x]
-}
-	
 	let id = productId.target.id;
 	
 let items = products.find((v)=>{
 	return v.id==id
 })
-	newarr.push(items)
+	if(!items){
+		return
+	}
 	
-	// let jsobj = JSON.stringify(items)
-	sessionStorage.setItem("products", JSON.stringify([...newarr]));
+	let cart = JSON.parse(sessionStorage.getItem("Products"))||[];
+	cart.push(items)
+	sessionStorage.setItem("products", JSON.stringify(cart));
+	
+	renderCart()
+	
 }
 
 // Remove item from cart
@@ -86,4 +85,4 @@ function clearCart() {
 
 // Initial render
 renderProducts();
-renderCart();
+// renderCart();
