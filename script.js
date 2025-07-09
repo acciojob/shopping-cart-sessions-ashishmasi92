@@ -23,7 +23,7 @@ function renderProducts() {
 	  btn.id = `${product.id}`
 	  btn.addEventListener("click",addToCart)
 	  // btn.data-id=`${product.id}`
-    li.innerHTML = `${product.name} - $${product.price} <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>`;
+    li.innerHTML = `${product.name} - $${product.price} `;
     productList.append(li,btn);
   });
 }
